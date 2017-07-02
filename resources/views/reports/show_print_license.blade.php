@@ -42,7 +42,7 @@
                             </tr>
 
                             <tr>
-                                <td><b>3. Goobta<br>(Location)</b></td><td>Hassan abdi</td>
+                                <td><b>3. Goobta<br>(Location)</b></td><td>{{$renewal->license->operation_site}}</td>
 
                             </tr>
                             <tr>
@@ -57,22 +57,22 @@
                                 <td><b>5. Meesha ay ka kalluumaysanayso<br>(Area of operation)</b></td><td>{{$renewal->license->operation_site}}</td>
                             </tr>
                             <tr>
-                                <td><b>6. Xadiga kalluunka uu qabsanayo Sanadkii <br>(Fish Quantities cached yearly)</b></td><td>Inta Awoodiisa Ah (As per their capacity)</td>
+                                <td><b>6. Xadiga kalluunka uu qabsanayo Sanadkii <br>(Fish Quantities cached yearly)</b></td><td>{{$renewal->license->fish_quantities_cached_yearly}}</td>
                             </tr>
                             <tr>
-                                <td><b>7. Noocyada kallunka ay qabsanayso <br>(Type of Exploited Fishes)</b></td><td>All species except sharks,turtles and marine mammals</td>
+                                <td><b>7. Noocyada kallunka ay qabsanayso <br>(Type of Exploited Fishes)</b></td><td>{{$renewal->license->type_of_exploited_fishes}}</td>
 
                             </tr>
                             <tr>
-                                <td><b>8. Habka Daryeelka kalluunka<br> (Processing Method)</b></td><td>Qaboojin and barafayn(FREEZING AND ICING)</td>
+                                <td><b>8. Habka Daryeelka kalluunka<br> (Processing Method)</b></td><td>{{$renewal->license->processing_method}}</td>
 
                             </tr>
                             <tr>
-                                <td><b>9. Tirada Doonyaha / Laashka Shirkaddu leedahay <br>(Number of their Fishing boats)</b></td><td>1 BOAT</td>
+                                <td><b>9. Tirada Doonyaha / Laashka Shirkaddu leedahay <br>(Number of their Fishing boats)</b></td><td>{{$renewal->license->no_of_fishing_boats}}</td>
 
                             </tr>
                             <tr>
-                                <td><b>10. Jumlad/Tafaariiq</b></td><td>LABADABA / BOTH</td>
+                                <td><b>10. Jumlad/Tafaariiq</b></td><td>{{$renewal->license->selling_type}}</td>
 
                             </tr>
 

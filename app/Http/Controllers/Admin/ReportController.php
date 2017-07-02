@@ -200,7 +200,7 @@ class ReportController extends Controller
             //->sum('amount_fish_2');
             //->get();
             $total_renewals=$query->get()->count();
-            $renewals=$query->get();
+            $renewals=$query->get()->orderBy('id','DESC');
 
             //return view("reports.renewal",compact('licenses','renewals','total_renewals','from','to'));
         }

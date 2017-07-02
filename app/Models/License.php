@@ -22,7 +22,7 @@ class License extends Model
      protected $fillable = ['id','date','business_name','establishment_year','operation_site','ownership','owner','owner_tell_1',
      'owner_tell_2','owner_email','contact_person','contact_person_tell_1','contact_person_tell_2','contact_person_email','operation_status','assets','applicant_name','applicant_tell_1','applicant_tell_2',
 'applicant_tell_3','application_email','permenant_address','business_charter','attorny_general_registration_letter','bank_guarantee',
-'ownership_document','note','serial'];
+'ownership_document','note','serial','type','no_of_fishing_boats','processing_method','type_of_exploited_fishes','fish_quantities_cached_yearly','selling_type'];
     // protected $hidden = [];
     // protected $dates = [];
 

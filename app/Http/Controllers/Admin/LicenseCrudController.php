@@ -34,7 +34,7 @@ class LicenseCrudController extends CrudController
         $this->crud->addField([   // date_picker
             'name' => 'date',
             'type' => 'date_picker',
-            'label' => 'Date',
+            'label' => 'Date*',
             // optional:
             'date_picker_options' => [
                 'todayBtn' => true,
@@ -43,7 +43,7 @@ class LicenseCrudController extends CrudController
             ],
         ], 'update/create/both');
 
-        $this->crud->addField(['label' => "Business Name",
+        $this->crud->addField(['label' => "Business Name*",
             'type' => 'text',
             'name' => 'business_name', // the db column for the foreign key
             // helpful text, show up after input
@@ -55,7 +55,7 @@ class LicenseCrudController extends CrudController
                 'class' => 'form-group col-md-4'
             ]
         ], 'update/create/both');
-        $this->crud->addField(['label' => "Establishment Year",
+        $this->crud->addField(['label' => "Establishment Year*",
             'type' => 'number',
             'name' => 'establishment_year', // the db column for the foreign key
             // helpful text, show up after input
@@ -67,7 +67,7 @@ class LicenseCrudController extends CrudController
                 'class' => 'form-group col-md-4'
             ]
         ], 'update/create/both');
-        $this->crud->addField(['label' => "Operation Site",
+        $this->crud->addField(['label' => "Operation Site*",
             'type' => 'text',
             'name' => 'operation_site', // the db column for the foreign key
             // helpful text, show up after input
@@ -79,7 +79,7 @@ class LicenseCrudController extends CrudController
                 'class' => 'form-group col-md-4'
             ]
         ], 'update/create/both');
-        $this->crud->addField(['label' => "Owner",
+        $this->crud->addField(['label' => "Owner*",
             'type' => 'text',
             'name' => 'owner', // the db column for the foreign key
             // helpful text, show up after input
@@ -92,7 +92,7 @@ class LicenseCrudController extends CrudController
             ]
         ], 'update/create/both');
         $this->crud->addField([       // Select2Multiple = n-n relationship (with pivot table)
-            'label' => "Business Type",
+            'label' => "Business Type*",
             'type' => 'select2_multiple',
             'name' => 'businessTypes', // the method that defines the relationship in your Model
             'entity' => 'businessTypes', // the method that defines the relationship in your Model
@@ -136,7 +136,7 @@ class LicenseCrudController extends CrudController
                 'class' => 'form-group col-md-3'
             ]
         ], 'update/create/both');
-        $this->crud->addField(['label' => "Contact Person",
+        $this->crud->addField(['label' => "Contact Person*",
             'type' => 'text',
             'name' => 'contact_person', // the db column for the foreign key
             // helpful text, show up after input
@@ -148,7 +148,7 @@ class LicenseCrudController extends CrudController
                 'class' => 'form-group col-md-3'
             ]
         ], 'update/create/both');
-        $this->crud->addField(['label' => "Contact Person Tell 1",
+        $this->crud->addField(['label' => "Contact Person Tell 1*",
             'type' => 'text',
             'name' => 'contact_person_tell_1', // the db column for the foreign key
             // helpful text, show up after input
@@ -184,7 +184,7 @@ class LicenseCrudController extends CrudController
                 'class' => 'form-group col-md-3'
             ]
         ], 'update/create/both');
-        $this->crud->addField(['label' => "Applicant Name",
+        $this->crud->addField(['label' => "Applicant Name*",
             'type' => 'text',
             'name' => 'applicant_name', // the db column for the foreign key
             // helpful text, show up after input
@@ -198,7 +198,7 @@ class LicenseCrudController extends CrudController
         ], 'update/create/both');
 
 
-        $this->crud->addField(['label' => "Applicant Tell 1",
+        $this->crud->addField(['label' => "Applicant Tell 1*",
             'type' => 'text',
             'name' => 'applicant_tell_1', // the db column for the foreign key
             // helpful text, show up after input
@@ -311,7 +311,7 @@ class LicenseCrudController extends CrudController
 
         $this->crud->addField([
             'name'        => 'operation_status', // the name of the db column
-            'label'       => 'Operation Status', // the input label
+            'label'       => 'Operation Status*', // the input label
             'type'        => 'radio',
             'options'     => [ // the key will be stored in the db, the value will be shown as label;
                 'new' => "New",
@@ -323,7 +323,7 @@ class LicenseCrudController extends CrudController
         ], 'update/create/both');
         $this->crud->addField([
             'name'        => 'ownership', // the name of the db column
-            'label'       => 'Ownership', // the input label
+            'label'       => 'Ownership*', // the input label
             'type'        => 'radio',
             'options'     => [ // the key will be stored in the db, the value will be shown as label;
                 'personal' => "Personal",
@@ -334,9 +334,10 @@ class LicenseCrudController extends CrudController
             // optional
             //'inline'      => false, // show the radios all on the same line?
         ], 'update/create/both');
+
         $this->crud->addField([
             'name'        => 'serial', // the name of the db column
-            'label'       => 'Serial', // the input label
+            'label'       => 'Serial*', // the input label
             'type'        => 'text',
             'wrapperAttributes' => [
                 'class' => 'form-group col-md-12'
@@ -345,6 +346,66 @@ class LicenseCrudController extends CrudController
             // optional
             //'inline'      => false, // show the radios all on the same line?
         ], 'update/create/both');
+        $this->crud->removeFields(['type','note'], 'update/create/both');
+        $this->crud->addField([
+            'name'        => 'type', // the name of the db column
+            'label'       => 'Type*', // the input label
+            'type'        => 'radio',
+            'options'     => [ // the key will be stored in the db, the value will be shown as label;
+                'local' => "Local",
+                'foreign' => "Foreign",
+            ],
+            // optional
+            //'inline'      => false, // show the radios all on the same line?
+        ], 'update/create/both')->afterField('date');
+        $this->crud->addField([
+            'name'        => 'no_of_fishing_boats', // the name of the db column
+            'label'       => 'No of fishing boats*', // the input label
+            'type'        => 'text',
+
+            // optional
+            //'inline'      => false, // show the radios all on the same line?
+        ], 'update/create/both');
+        $this->crud->addField([
+            'name'        => 'processing_method', // the name of the db column
+            'label'       => 'Processing method*', // the input label
+            'type'        => 'text',
+
+            // optional
+            //'inline'      => false, // show the radios all on the same line?
+        ], 'update/create/both');
+        $this->crud->addField([
+            'name'        => 'type_of_exploited_fishes', // the name of the db column
+            'label'       => 'Type of exploited fishes*', // the input label
+            'type'        => 'text',
+
+            // optional
+            //'inline'      => false, // show the radios all on the same line?
+        ], 'update/create/both');
+        $this->crud->addField([
+            'name'        => 'fish_quantities_cached_yearly', // the name of the db column
+            'label'       => 'Fish quantities cached yearly*', // the input label
+            'type'        => 'text',
+
+            // optional
+            //'inline'      => false, // show the radios all on the same line?
+        ], 'update/create/both');
+        $this->crud->addField([
+            'name'        => 'selling_type', // the name of the db column
+            'label'       => 'Selling type(Jumlad / Tafariiq)*', // the input label
+            'type'        => 'text',
+
+            // optional
+            //'inline'      => false, // show the radios all on the same line?
+        ], 'update/create/both');
+        //$this->crud->removeField('note', 'update/create/both');
+
+        $this->crud->addField([   // Textarea
+            'name' => 'note',
+            'label' => 'Note',
+            'type' => 'textarea'
+        ], 'update/create/both')->afterField('business_type');
+
 
         // $this->crud->addFields($array_of_arrays, 'update/create/both');
         // $this->crud->removeField('name', 'update/create/both');

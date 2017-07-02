@@ -33,7 +33,7 @@ class LicenseRequest extends \Backpack\CRUD\app\Http\Requests\CrudRequest
             'operation_site'=> 'required',
             'ownership'=> 'required',
             'owner'=> 'required',
-            'owner_tell_1'=> 'required',
+            'owner_tell_1',
             'owner_tell_2',
             'owner_email',
             'contact_person'=> 'required',
@@ -52,7 +52,17 @@ class LicenseRequest extends \Backpack\CRUD\app\Http\Requests\CrudRequest
             'attorny_general_registration_letter',
             'bank_guarantee',
             'ownership_document',
-            'note'
+            'note',
+            'attorny_general_registration_letter',
+            'bank_guarantee',
+            'ownership_document',
+            'note',
+            'type'=> 'required',
+            'no_of_fishing_boats'=> 'required',
+            'processing_method'=> 'required',
+            'type_of_exploited_fishes'=> 'required',
+            'fish_quantities_cached_yearly'=> 'required',
+            'selling_type'=> 'required'
         ];
     }
 
