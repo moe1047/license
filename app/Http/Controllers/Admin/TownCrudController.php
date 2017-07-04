@@ -97,6 +97,7 @@ class TownCrudController extends CrudController
          $this->crud->orderBy('id','DESC');
         // $this->crud->groupBy();
         // $this->crud->limit();
+        $this->crud->enableExportButtons();
     }
 
     public function store(StoreRequest $request)
@@ -116,4 +117,5 @@ class TownCrudController extends CrudController
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;
     }
+
 }

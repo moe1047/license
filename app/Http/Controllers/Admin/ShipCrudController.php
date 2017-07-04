@@ -113,6 +113,7 @@ class ShipCrudController extends CrudController
          $this->crud->orderBy('id','DESC');
         // $this->crud->groupBy();
         // $this->crud->limit();
+        $this->crud->enableExportButtons();
     }
 
     public function store(StoreRequest $request)

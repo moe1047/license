@@ -86,7 +86,7 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered datatable">
                         <thead>
                         <tr>
                             <td>Date</td><td>Ship</td><td>Location</td><td>Town</td><td>Fishes</td>
@@ -146,6 +146,30 @@
         });
         $(document).ready(function() {
             $(".select2").select2();
+        });
+        var table=$(".datatable").DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'copyHtml5',
+                    exportOptions: {
+                        columns: [ 0, ':visible' ]
+                    }
+                },
+                {
+                    extend: 'excelHtml5',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                },
+                {
+                    extend: 'pdfHtml5',
+                    exportOptions: {
+                        columns: [ 0, 1, 2, 5 ]
+                    }
+                },
+                'colvis'
+            ]
         });
     </script>
 

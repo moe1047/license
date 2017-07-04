@@ -97,6 +97,7 @@ class BusinessTypeCrudController extends CrudController
         // $this->crud->orderBy();
         // $this->crud->groupBy();
         // $this->crud->limit();
+        $this->crud->enableExportButtons();
     }
 
     public function store(StoreRequest $request)

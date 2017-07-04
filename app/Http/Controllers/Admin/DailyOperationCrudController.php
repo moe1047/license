@@ -224,10 +224,12 @@ class DailyOperationCrudController extends CrudController
         // $this->crud->addClause('withoutGlobalScopes');
         // $this->crud->addClause('withoutGlobalScope', VisibleScope::class);
         // $this->crud->with(); // eager load relationships
+        $this->crud->enableExportButtons();
          $this->crud->orderBy('id','DESC');
         // $this->crud->groupBy();
         // $this->crud->limit();
         $this->crud->setCreateView('daily_operations.create');
+
     }
     public function create()
     {
@@ -256,6 +258,7 @@ class DailyOperationCrudController extends CrudController
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         //return $redirect_location;
+
     }
 
     public function update(UpdateRequest $request)

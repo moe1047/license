@@ -26,9 +26,9 @@
 
                     </div>
                 </div>
-                <h3 STYLE="text-align: center"><b>RUQSADA KAGANACSIGA KALLUUNKA EE WADANIGA AH <br>LOCAL FISH TRADE LICENSE.</b></h3>
+                <h3 STYLE="text-align: center"><b>RUQSADA KAGANACSIGA KALLUUNKA EE WADANIGA AH <br>{{$renewal->license->type=="local"?"LOCAL":"FOREIGN"}} FISH TRADE LICENSE.</b></h3>
                 <h5 STYLE="text-align: center">Ministery of Fisheries and Marine Resource has granted this fish trader license
-                        to the local company whose<br> specifications are listed below:</h5><hr>
+                        to the {{$renewal->license->type=="local"?"local":"foreign"}} company whose<br> specifications are listed below:</h5><hr>
                 <div class="panel panel-default" >
                     <div class="panel-body">
                         <table class="table table-bordered" style="margin:2px">

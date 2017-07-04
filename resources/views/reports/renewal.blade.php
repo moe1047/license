@@ -59,7 +59,7 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered datatable">
                         <thead>
                         <tr>
                             <th>License</th><th>Owner</th><th>Business Name</th><th>Renewed date</th><th>Expire Date</th>
@@ -107,6 +107,30 @@
         });
         $('.date').datepicker({
             format: "dd/mm/yyyy"
+        });
+        var table=$(".datatable").DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'copyHtml5',
+                    exportOptions: {
+                        columns: [ 0, ':visible' ]
+                    }
+                },
+                {
+                    extend: 'excelHtml5',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                },
+                {
+                    extend: 'pdfHtml5',
+                    exportOptions: {
+                        columns: [ 0, 1, 2, 5 ]
+                    }
+                },
+                'colvis'
+            ]
         });
     </script>
 

@@ -144,6 +144,7 @@ class RenewalCrudController extends CrudController
         // $this->crud->with(); // eager load relationships
          $this->crud->orderBy("id","DESC");
         // $this->crud->groupBy();
+        $this->crud->enableExportButtons();
         // $this->crud->limit();
     }
 

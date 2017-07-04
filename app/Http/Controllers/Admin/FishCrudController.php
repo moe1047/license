@@ -95,6 +95,7 @@ class FishCrudController extends CrudController
         // $this->crud->addClause('withoutGlobalScope', VisibleScope::class);
         // $this->crud->with(); // eager load relationships
          $this->crud->orderBy('id','DESC');
+        $this->crud->enableExportButtons();
         // $this->crud->groupBy();
         // $this->crud->limit();
     }
