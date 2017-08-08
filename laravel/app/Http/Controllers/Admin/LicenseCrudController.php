@@ -354,6 +354,7 @@ class LicenseCrudController extends CrudController
             'options'     => [ // the key will be stored in the db, the value will be shown as label;
                 'local' => "Local",
                 'foreign' => "Foreign",
+                'joint venture' => "Joint venture"
             ],
             // optional
             //'inline'      => false, // show the radios all on the same line?

@@ -151,7 +151,7 @@ class RenewalCrudController extends CrudController
 
     public function store(StoreRequest $request)
     {
-         $request->request->add(["expire_date"=>Carbon::parse($request->input('date'))->addYear()->toDateString()]);
+         $request->request->add(["expire_date"=>Carbon::parse($request->input('date'))->addDays(45)->toDateString()]);
 
         Renewal::create($request->all());
         //return $request->all();
@@ -170,7 +170,7 @@ class RenewalCrudController extends CrudController
     {
         // $request->all();
 
-        $request->request->add(["expire_date"=>Carbon::parse($request->input('date'))->addYear()->toDateString()]);
+        $request->request->add(["expire_date"=>Carbon::parse($request->input('date'))->addDays(45)->toDateString()]);
         // $request->all();
          Renewal::find($request->input('id'))->update(["date"=>$request->input("date"),"note"=>$request->input("note"),"expire_date"=>$request->input("expire_date")]);
         // your additional operations before save here

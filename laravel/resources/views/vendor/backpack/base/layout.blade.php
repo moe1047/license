@@ -160,6 +160,30 @@
     @include('backpack::inc.alerts')
 
     @yield('after_scripts')
+    <script>
+        $("input[name='tons']").on('keyup', function() {
+            var type=$("input[name='type']:checked").val()
+            if(type=="local"){
+                $("input[name='amount']").val(50* $("input[name='tons']").val()) ;
+            }else{
+                $("input[name='amount']").val(100* $("input[name='tons']").val());
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
 
     <!-- JavaScripts -->
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}

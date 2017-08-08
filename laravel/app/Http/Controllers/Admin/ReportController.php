@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Helpers\Helper;
 use App\Models\DailyOperation;
 use App\Models\License;
+use App\Models\LicensePayment;
 use App\Models\Renewal;
+use App\Models\VesselLicenseRenewal;
+use App\Models\VesselPayment;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -200,7 +203,7 @@ class ReportController extends Controller
             //->sum('amount_fish_2');
             //->get();
             $total_renewals=$query->get()->count();
-            $renewals=$query->get()->orderBy('id','DESC');
+            $renewals=$query->orderBy('id','DESC')->get();
 
             //return view("reports.renewal",compact('licenses','renewals','total_renewals','from','to'));
         }
@@ -214,5 +217,121 @@ class ReportController extends Controller
     {
         $renewal=Renewal::findOrFail($id);
         return view('reports.show_print_license',compact('renewal'));
+    }
+    public function print_vessel_license(Request $request)
+    {
+        $renewals=VesselLicenseRenewal::all();
+        $total_renewals=$renewals->count();
+        $licenses= Helper::vesselLicensesDropDown();
+        if($request->has('search')){
+            //$request->all();
+            //$total_fish_1=0;
+
+            //$from=$request->has('from')?Carbon::createFromFormat('d/m/Y',$request->from)->toDateString():Carbon::today()->toDateString();
+            //$to=$request->has('to')?Carbon::createFromFormat('d/m/Y',$request->to)->toDateString():Carbon::today()->toDateString();
+            $from=$request->from!=null?Carbon::createFromFormat('d/m/Y',$request->from)->toDateString():null;
+            $to=$request->to!=null?Carbon::createFromFormat('d/m/Y',$request->to)->toDateString():null;
+            //return Renewal::whereBetween('date',[$from,$to])->get();
+
+            $query=VesselLicenseRenewal::when($request->has('vesselLicense'),function($builder) use ($request){
+                return $builder->whereIn('license_id',$request->input('licenses'));
+            });
+            if($request->input('status')=="expired")
+            {
+                $query->whereBetween('expire_date',[$from,$to]);
+            }
+            if($request->input('status')=="renewed")
+            {
+                $query->whereBetween('date',[$from,$to]);
+            }
+            //return $query->get();
+
+            /*->when($request->has('status'),function($builder) use ($request){
+                return $builder->where('business_name','like','%'.$request->input('business_name').'%');
+            })*/
+
+
+            //->sum('amount_fish_2');
+            //->get();
+            $total_renewals=$query->get()->count();
+            $renewals=$query->orderBy('id','DESC')->get();
+
+            //return view("reports.renewal",compact('licenses','renewals','total_renewals','from','to'));
+        }
+
+        return view("reports.print_vessel_license",compact('licenses','renewals','total_renewals'));
+
+
+
+    }
+    public function show_print_vessel_license($id)
+    {
+        $renewal=VesselLicenseRenewal::findOrFail($id);
+        return view('reports.show_print_vessel_license',compact('renewal'));
+    }
+
+    public function license_payments(Request $request)
+    {
+        $licenses= Helper::licensesDropDown();
+
+
+        if($request->has('search')){
+            //$total_fish_1=0;
+            $from=$request->from!=null?Carbon::createFromFormat('d/m/Y',$request->from)->toDateString():null;
+            $to=$request->to!=null?Carbon::createFromFormat('d/m/Y',$request->to)->toDateString():null;
+            $payments=LicensePayment::when($request->has('from')&&$request->has('to'),
+                function($builder) use ($request,$from,$to){
+                    return $builder->whereBetween('date',array($from,$to));
+                })
+               ;
+            $total_amount=$payments->sum('amount');
+            $total_tons=$payments->sum('tons');
+            //$total_fish_2=$operations->sum('amount_fish_2');
+            //$total_fish_3=$operations->sum('amount_fish_3');
+
+            $payments=$payments->orderBy('id','desc')->get();
+
+
+            return view("reports.license_payments",compact('licenses',
+                'payments','total_amount','total_tons'));
+
+
+        }
+
+        return view("reports.license_payments",compact('licenses'));
+
+
+
+    }
+    public function vessel_payments(Request $request)
+    {
+        //$licenses= Helper::vesselLicensesDropDown();
+
+
+        if($request->has('search')){
+            //$total_fish_1=0;
+            $from=$request->from!=null?Carbon::createFromFormat('d/m/Y',$request->from)->toDateString():null;
+            $to=$request->to!=null?Carbon::createFromFormat('d/m/Y',$request->to)->toDateString():null;
+            $payments=VesselPayment::when($request->has('from')&&$request->has('to'),
+                function($builder) use ($request,$from,$to){
+                    return $builder->whereBetween('date',array($from,$to));
+                });
+            $total_amount=$payments->sum('amount');
+            $total_tons=$payments->sum('tons');
+            //$total_fish_2=$operations->sum('amount_fish_2');
+            //$total_fish_3=$operations->sum('amount_fish_3');
+
+            $payments=$payments->orderBy('id','desc')->get();
+
+            return view("reports.vessel_payments",compact('licenses',
+                'payments','total_amount','total_tons'));
+
+
+        }
+
+        return view("reports.vessel_payments",compact('licenses'));
+
+
+
     }
 }

@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\ShipRequest as StoreRequest;
-use App\Http\Requests\ShipRequest as UpdateRequest;
+use App\Http\Requests\VesselPaymentRequest as StoreRequest;
+use App\Http\Requests\VesselPaymentRequest as UpdateRequest;
 
-class ShipCrudController extends CrudController
+class VesselPaymentCrudController extends CrudController
 {
     public function setup()
     {
@@ -18,9 +18,9 @@ class ShipCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Ship');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/ship');
-        $this->crud->setEntityNameStrings('ship', 'ships');
+        $this->crud->setModel('App\Models\VesselPayment');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/vesselPayment');
+        $this->crud->setEntityNameStrings('vessel payment', 'vessel payments');
 
         /*
         |--------------------------------------------------------------------------
@@ -29,35 +29,64 @@ class ShipCrudController extends CrudController
         */
 
         $this->crud->setFromDb();
+        $this->crud->removeFields(['date'], 'update/create/both');
+
+        $this->crud->addField([  // Select2
+            'label' => "License",
+            'type' => 'select2',
+            'name' => 'vessel_id', // the db column for the foreign key
+            'entity' => 'vesselLicense', // the method that defines the relationship in your Model
+            'attribute' => 'vesselLicenseName', // foreign key attribute that is shown to user
+            'model' => "App\Models\VesselLicense" // foreign key model
+        ], 'update/create/both');
+
+        $this->crud->addField([
+            'name'        => 'type', // the name of the db column
+            'label'       => 'Type*', // the input label
+            'type'        => 'radio',
+            'options'     => [ // the key will be stored in the db, the value will be shown as label;
+                'foreign' => "Foreign",
+                'local' => "Local"
+            ],
+            // optional
+            //'inline'      => false, // show the radios all on the same line?
+        ], 'update/create/both');
+
+        $this->crud->addField([  // Select2
+            'label' => "Date",
+            'type' => 'date_picker',
+            'name' => 'date', // the db column for the foreign key
+
+            'date_picker_options' => [
+                'todayBtn' => 'linked',
+                'format' => 'dd-mm-yyyy',
+                'autoclose'=> true
+            ],
+
+        ], 'create/update/both');
+
+        $this->crud->setColumnDetails('vessel_id', [  // Select2
+            'label' => "Vessel",
+            'type' => 'select',
+            'name' => 'vessel_id', // the db column for the foreign key
+            'entity' => 'vesselLicense', // the method that defines the relationship in your Model
+            'attribute' => 'vesselLicenseName', // foreign key attribute that is shown to user
+            'model' => "App\Models\VesselLicense" // foreign key model
+        ]); // adjusts the properties of the passed in column (by name)
+
 
         // ------ CRUD FIELDS
-         $this->crud->addField([       // Select2Multiple = n-n relationship (with pivot table)
-             'label' => "Vessel Type",
-             'type' => 'select2',
-             'name' => 'ship_type_id', // the method that defines the relationship in your Model
-             'entity' => 'shipType', // the method that defines the relationship in your Model
-             'attribute' => 'name', // foreign key attribute that is shown to user
-             'model' => "App\Models\ShipType", // foreign key model
-              // on create&update, do you need to add/delete pivot table entries?
-         ], 'update/create/both');
-
+        // $this->crud->addField($options, 'update/create/both');
+        // $this->crud->addFields($array_of_arrays, 'update/create/both');
         // $this->crud->removeField('name', 'update/create/both');
         // $this->crud->removeFields($array_of_names, 'update/create/both');
 
         // ------ CRUD COLUMNS
-         //$this->crud->addColumn(); // add a single column, at the end of the stack
+        // $this->crud->addColumn(); // add a single column, at the end of the stack
         // $this->crud->addColumns(); // add multiple columns, at the end of the stack
         // $this->crud->removeColumn('column_name'); // remove a column from the stack
         // $this->crud->removeColumns(['column_name_1', 'column_name_2']); // remove an array of columns from the stack
-         $this->crud->setColumnDetails('ship_type_id', [       // Select2Multiple = n-n relationship (with pivot table)
-             'label' => "Vessel Type",
-             'type' => 'select',
-              // the method that defines the relationship in your Model
-             'entity' => 'shipType', // the method that defines the relationship in your Model
-             'attribute' => 'name', // foreign key attribute that is shown to user
-             'model' => "App\Models\ShipType", // foreign key model
-             // on create&update, do you need to add/delete pivot table entries?
-         ]); // adjusts the properties of the passed in column (by name)
+        // $this->crud->setColumnDetails('column_name', ['attribute' => 'value']); // adjusts the properties of the passed in column (by name)
         // $this->crud->setColumnsDetails(['column_1', 'column_2'], ['attribute' => 'value']);
 
         // ------ CRUD BUTTONS
@@ -110,10 +139,9 @@ class ShipCrudController extends CrudController
         // $this->crud->addClause('withoutGlobalScopes');
         // $this->crud->addClause('withoutGlobalScope', VisibleScope::class);
         // $this->crud->with(); // eager load relationships
-         $this->crud->orderBy('id','DESC');
+        // $this->crud->orderBy();
         // $this->crud->groupBy();
         // $this->crud->limit();
-        $this->crud->enableExportButtons();
     }
 
     public function store(StoreRequest $request)

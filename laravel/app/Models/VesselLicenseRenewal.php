@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class Ship extends Model
+class VesselLicenseRenewal extends Model
 {
     use CrudTrait;
 
@@ -15,11 +15,11 @@ class Ship extends Model
     |--------------------------------------------------------------------------
     */
 
-    //protected $table = 'ships';
+    //protected $table = 'vessel_license_renewals';
     //protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-     protected $fillable = ['name','owner','ship_type_id'];
+     protected $fillable = ['vessel_license_id','date','expire_date','note'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -28,17 +28,15 @@ class Ship extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
-    public function getShipOwnerAttribute(){
-        return $this->name." - ".$this->owner;
-    }
 
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function shipType(){
-        return $this->belongsTo('App\Models\ShipType');
+    public function vesselLicense()
+    {
+        return $this->belongsTo('App\Models\VesselLicense');
     }
 
     /*

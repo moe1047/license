@@ -8,13 +8,13 @@
                     <div class="panel-body" style="padding:2px">
                         <div >
                             <div style="margin-top:15px;margin-left:1px;float:left;padding-right: 30px;text-align:center;font-family: Times New Roman, Times, serif;">
-                                <h3>JUMHUURIYADDA SOMALILAND <br>WASARADA KALLUMAYSIGA<br> & KHAYRAADKA BADDA</h3>
+                                <h3>DOWLADDA PUNTLAND <br> EE SOMALIA</h3>
                             </div>
-                            <div style="margin-top:5px;margin-left:3%;margin-bottom:1%;float:left">
-                                <img src="{{asset('css/logo.png')}}" class="img img-rounded" width="130" height="120">
-                                </div>
+                            <div style="margin-top:5px;margin-left:6%;margin-bottom:1%;float:left">
+                                <img src="{{asset('css/logo2.png')}}" class="img img-rounded" width="170" height="120">
+                            </div>
                             <div style="margin-top:15px;margin-right:1px;float:right;text-align:center;font-family: Times New Roman, Times, serif;">
-                                <h3>REPUBLIC OF SOMALILAND<br> MINISTRY OF FISHERIES<br> & MARINE RECOURCES</h3>
+                                <h3>PUNTLAND STATE OF <br> SOMALIA</h3>
                             </div>
                         </div>
                     </div>
@@ -86,7 +86,6 @@
                     This license is requested to observe the state fishiries law(s) regulations,degrees and orders issued to this license
                     by the ministery of fisheries and marine resources or any other conditions to which the license is subjected to
                     .the license is also requested to pay the custom duties of the exported fish on every fishing trip</h5><hr>
-                <h3 STYLE="text-align: center;font-family: Times New Roman, Times, serif;"><b>Dr. JAAMAC MAXAMED ODOWAA<br>AGAASIMAHA GUUD WK&KH.BADDA</b></h3>
 
             </div>
         </div>

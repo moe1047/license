@@ -9,6 +9,7 @@ use App\Models\License;
 use App\Models\Location;
 use App\Models\Ship;
 use App\Models\Town;
+use App\Models\VesselLicense;
 
 class Helper
 {
@@ -41,6 +42,11 @@ class Helper
     public static function licensesDropDown()
     {
         return License::all()->pluck('licenseOwner','id');
+
+    }
+    public static function vesselLicensesDropDown()
+    {
+        return VesselLicense::all()->pluck('vesselLicenseName','id');
 
     }
 

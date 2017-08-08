@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class Ship extends Model
+class VesselLicense extends Model
 {
     use CrudTrait;
 
@@ -15,11 +15,14 @@ class Ship extends Model
     |--------------------------------------------------------------------------
     */
 
-    //protected $table = 'ships';
+    protected $table = 'vessel_licences';
     //protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-     protected $fillable = ['name','owner','ship_type_id'];
+     protected $fillable = ['licenseNo','vesselName','nationality','countryRegistered','vesselRegNo','lengthBreadthDepth','tonnage','engineType','noOfCrew','otherCraftOnBoard','yearOfConstruction',
+'landingAndTransshippingPort','coldStorageCapacity','processingMethods','speciesToBeFished','quantityPermitted','typesOfFishingGear','areaOfFishing','reportingDetails','owner','address','tell','fax','email',
+'agent','agentAddress','agentFax','agentEmail','agentTell','internationalCallSign','normalTransmittingFrequencies','GPS','typeOfEquipment','Transponders','type','identifyingCode','loren','omega',
+'decca','otherEquipment','adioBuoys','epirbs','date'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -28,18 +31,12 @@ class Ship extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
-    public function getShipOwnerAttribute(){
-        return $this->name." - ".$this->owner;
-    }
 
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function shipType(){
-        return $this->belongsTo('App\Models\ShipType');
-    }
 
     /*
     |--------------------------------------------------------------------------
@@ -58,4 +55,7 @@ class Ship extends Model
     | MUTATORS
     |--------------------------------------------------------------------------
     */
+    public function getVesselLicenseNameAttribute(){
+        return $this->licenseNo." - ".$this->vesselName;
+    }
 }
