@@ -26,7 +26,7 @@ class VesselLicenseRequest extends \Backpack\CRUD\app\Http\Requests\CrudRequest
     {
         return [
             // 'name' => 'required|min:5|max:255'
-            'licenseNo'=> 'required','vesselName'=> 'required','nationality'=> 'required','date'=> 'required'
+            'licenseNo'=> 'required','vesselName'=> 'required','nationality'=> 'required','date'=> 'required','tell'=> 'required'
         ];
     }
 

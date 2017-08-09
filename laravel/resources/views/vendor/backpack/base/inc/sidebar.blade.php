@@ -32,6 +32,7 @@
               <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/license') }}"><i class="fa fa-certificate"></i> <span>Licenses</span></a></li>
               <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/vesselLicense') }}"><i class="fa fa-ship"></i> <span>Vessel Licenses</span></a></li>
               <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/renewal') }}"><i class="fa fa-calendar-minus-o"></i> <span>Renewals</span></a></li>
+              <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/vesselLicenseRenewal') }}"><i class="fa fa-calendar-minus-o"></i> <span>Vessel Renewals</span></a></li>
               <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/dailyOperation') }}"><i class="fa fa-calendar-check-o"></i> <span>Daily Operations</span></a></li>
 
               <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/licensePayment') }}"><i class="fa fa-money"></i> <span>License Payment</span></a></li>

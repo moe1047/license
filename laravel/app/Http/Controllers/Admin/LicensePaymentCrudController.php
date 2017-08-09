@@ -140,6 +140,7 @@ class LicensePaymentCrudController extends CrudController
         // $this->crud->with(); // eager load relationships
         // $this->crud->orderBy();
         // $this->crud->groupBy();
+        $this->crud->orderBy('id','DESC');
         // $this->crud->limit();
     }
 
